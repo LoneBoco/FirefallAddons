@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component xmlns="http://www.red5studios.com/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.red5studios.com/ ../../../schemas/component.xsd">
+	<Info
+		title="Goon Transit"
+		author="Nalin"
+		description="Opens the arcporter terminal menu.  Icons by JonusRockweller."
+		url=""
+		uiVersion="3002"
+	/>
+
+	<Events>
+		<Event name="ON_COMPONENT_LOAD"			bind="OnComponentLoad" />
+
+		<Event name="ON_SQUAD_ROSTER_UPDATE"				bind="OnSquadQueueEligibility" />
+		<Event name="ON_SQUAD_QUEUE_ELIGIBILITY_CHANGED"	bind="OnSquadQueueEligibility" />
+		<Event name="ON_SQUAD_LEAVE"						bind="OnSquadQueueEligibility" />
+		<Event name="ON_MATCH_QUEUE_RESPONSE"			bind="OnMatchQueueResponse" />
+		<Event name="MY_MATCH_QUEUE_RESPONSE"			bind="OnMatchQueueResponse" />
+		<Event name="ON_MATCH_QUEUE_UPDATE"				bind="OnMatchQueueUpdate" />
+		<Event name="ON_ENTER_ZONE"						bind="OnEnterZone" />
+	</Events>
+
+	<Textures>
+		<Texture name="navwheel_icon" src="./images/arcport.dds" premultiplied="false" />
+		<Texture name="raid_icon" src="./images/raidgroup.dds" premultiplied="false" />
+		<Texture name="zone_explore_icon" src="./images/zone_explore.dds" premultiplied="false" />
+
+		<Texture name="warfront" src="./images/warfront.dds" premultiplied="false" />
+		<Texture name="warfront_hc" src="./images/warfront_hc.dds" premultiplied="false" />
+		<Texture name="baneclaw" src="./images/baneclaw.dds" premultiplied="false" />
+		<Texture name="baneclaw_hc" src="./images/baneclaw_hc.dds" premultiplied="false" />
+		<Texture name="kanaloa" src="./images/kanaloa.dds" premultiplied="false" />
+		<Texture name="kanaloa_hc" src="./images/kanaloa_hc.dds" premultiplied="false" />
+
+		<Texture name="1163" src="components/MainUI/Panels/Arcporter/textures/1163.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="1" bottom="221" left="405" right="805" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="809" right="909" />
+		</Texture>
+		<Texture name="1049" src="components/MainUI/Panels/Arcporter/textures/1049.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1030" src="components/MainUI/Panels/Arcporter/textures/1030.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="673" bottom="834" left="1" right="162" />
+		</Texture>
+		<Texture name="448" src="components/MainUI/Panels/Arcporter/textures/448.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="162" src="components/MainUI/Panels/Arcporter/textures/162.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1107" src="components/MainUI/Panels/Arcporter/textures/1107.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1093" src="components/MainUI/Panels/Arcporter/textures/1093.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="323" bottom="480" left="1" right="295" />
+			<Region name="02" top="162" bottom="319" left="1" right="295" />
+			<Region name="03" top="1" bottom="158" left="1" right="295" />
+			<Region name="tbn" top="1" bottom="81" left="299" right="384" />
+		</Texture>
+		<Texture name="1069" src="components/MainUI/Panels/Arcporter/textures/1069.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="489" bottom="729" left="1" right="401" />
+			<Region name="02" top="245" bottom="485" left="1" right="401" />
+			<Region name="03" top="1" bottom="241" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1054" src="components/MainUI/Panels/Arcporter/textures/1054.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1051" src="components/MainUI/Panels/Arcporter/textures/1051.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1028" src="components/MainUI/Panels/Arcporter/textures/1028.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="489" bottom="729" left="1" right="401" />
+			<Region name="02" top="245" bottom="485" left="1" right="401" />
+			<Region name="03" top="1" bottom="241" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1022" src="components/MainUI/Panels/Arcporter/textures/1022.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1007" src="components/MainUI/Panels/Arcporter/textures/1007.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1003" src="components/MainUI/Panels/Arcporter/textures/1003.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="864" src="components/MainUI/Panels/Arcporter/textures/864.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="863" src="components/MainUI/Panels/Arcporter/textures/863.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="1189" bottom="1779" left="1" right="1025" />
+			<Region name="02" top="595" bottom="1185" left="1" right="1025" />
+			<Region name="03" top="1" bottom="591" left="1" right="1025" />
+			<Region name="tbn" top="1783" bottom="1883" left="1" right="101" />
+		</Texture>
+		<Texture name="861" src="components/MainUI/Panels/Arcporter/textures/861.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="844" src="components/MainUI/Panels/Arcporter/textures/844.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="489" bottom="729" left="1" right="401" />
+			<Region name="02" top="245" bottom="485" left="1" right="401" />
+			<Region name="03" top="1" bottom="241" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="833" src="components/MainUI/Panels/Arcporter/textures/833.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="658" src="components/MainUI/Panels/Arcporter/Textures/658.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="489" bottom="729" left="1" right="401" />
+			<Region name="02" top="245" bottom="485" left="1" right="401" />
+			<Region name="03" top="1" bottom="241" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1008" src="components/MainUI/Panels/Arcporter/textures/1008.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1155" src="components/MainUI/Panels/Arcporter/textures/1155.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="449" bottom="669" left="1" right="401" />
+			<Region name="02" top="225" bottom="445" left="1" right="401" />
+			<Region name="03" top="1" bottom="221" left="1" right="401" />
+			<Region name="tbn" top="1" bottom="101" left="405" right="505" />
+		</Texture>
+		<Texture name="1089" src="components/MainUI/Panels/Arcporter/textures/1089.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="323" bottom="480" left="1" right="295" />
+			<Region name="02" top="162" bottom="319" left="1" right="295" />
+			<Region name="03" top="1" bottom="158" left="1" right="295" />
+			<Region name="tbn" top="1" bottom="81" left="299" right="384" />
+		</Texture>
+		<Texture name="1173" src="components/MainUI/Panels/Arcporter/textures/1173.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="323" bottom="477" left="1" right="292" />
+			<Region name="02" top="162" bottom="316" left="1" right="292" />
+			<Region name="03" top="1" bottom="156" left="1" right="292" />
+			<Region name="tbn" top="1" bottom="79" left="295" right="379" />
+		</Texture>
+		<Texture name="1181" src="components/MainUI/Panels/Arcporter/textures/1181.dds" premultiplied="false" minScale="1">
+			<Region name="01" top="323" bottom="477" left="1" right="292" />
+			<Region name="02" top="162" bottom="316" left="1" right="292" />
+			<Region name="03" top="1" bottom="156" left="1" right="292" />
+			<Region name="tbn" top="1" bottom="79" left="295" right="379" />
+		</Texture>
+	</Textures>
+
+	<Colors>
+		<Color name="plate" value="#CCCCCC" />
+		<Color name="PanelTitle" value="#FFB301" />
+	</Colors>
+
+	<Styles>
+		<StyleSheet name="Body_Input" parent="#TextInput">
+			font:UbuntuRegular_10;
+			text-color:#ffffff;
+			eatsmice:true;
+			multiline:true;
+			texture:colors;
+			region:transparent;
+			valign:top;
+			halign:left;
+			<!-- wrapping:true; -->
+		</StyleSheet>
+		<StyleSheet name="plate_center_small">
+			font:UbuntuMedium_9;
+			halign:center;
+			valign:center;
+			drop-shadow:0;
+			color:plate
+		</StyleSheet>
+		<StyleSheet name="plate_grey">
+			font:UbuntuMedium_9;
+			halign:left;
+			valign:center;
+			drop-shadow:0;
+			color:#545252
+		</StyleSheet>
+		<StyleSheet name="req_reason">
+			font:UbuntuMedium_9;
+			halign:left;
+			valign:center;
+			color:#FFFFFF;
+		</StyleSheet>
+		<StyleSheet name="req_names">
+			font:UbuntuMedium_9;
+			halign:left;
+			valign:center;
+			color:squad
+		</StyleSheet>
+		<StyleSheet name="#Choice" parent="#Choice">
+			halign: left;
+			font: UbuntuMedium_9;
+			text-color: #909090;
+			bgcolor: plate;
+		</StyleSheet>
+	</Styles>
+
+	<BluePrints>
+		<BluePrint name="seperator" instantiable="true">
+			<StillArt dimensions="top:0; bottom:100%; left:0; right:50%" style="texture:gradients; region:white_right;" />
+			<StillArt dimensions="top:0; bottom:100%; left:50%; right:100%" style="texture:gradients; region:white_left;" />
+		</BluePrint>
+
+		<BluePrint name="Zone" instantiable="true">
+			<FocusBox name="title_section" dimensions="top:0; bottom:30; width:100%">
+				<Border dimensions="top:5; bottom:100%; width:100%" class="PanelBackDrop" />
+				<Text name="title" key="{Raid}" dimensions="top:7; bottom:100%; left:3; right:100%" style="font:Demi_12; valign:top; halign:left; color:PanelTitle" />
+			</FocusBox>
+			<Group name="zones" dimensions="left:0; top:30; width:100%; height:100%;" />
+		</BluePrint>
+		<BluePrint name="ZoneEntry" instantiable="true">
+			<FocusBox name="entry" dimensions="dock:fill">
+				<Bar name="panel" dimensions="dock:fill" style="tint:#006600; bgcolor:#008800; alpha:0" />
+				<Text name="name" key="{Baneclaw}" dimensions="left:5; right:100%; height:100%" style="font:Demi_8; valign:center;" />
+			</FocusBox>
+		</BluePrint>
+
+		<BluePrint name="req_tooltip" instantiable="true">
+			<ListLayout name="reason_list" dimensions="top:4; left:0; height:100%; width:100%" style="hpadding:8; vpadding:16">
+				<Group name="group_req" dimensions="top:0; left:0; width:100%; height:20">
+					<Text name="reason" dimensions="dock:fill" key="ARC_REQ_GROUP_SIZE" class="req_reason" />
+				</Group>
+				<ListLayout name="level_req" dimensions="top:0; left:0; width:10; height:40" style="vpadding:6; hpadding:6">
+					<Text name="reason" dimensions="top:0; left:0; width:100%; height:20" key="ARC_REQ_LEVEL" class="req_reason" />
+					<Text name="names" dimensions="top:0; left:0; width:100%; height:20" class="req_names" key="{PlayerName, PlayerName, PlayerName, PlayerName}" />
+				</ListLayout>
+				<ListLayout name="cert_req" dimensions="top:0; left:0; width:10; height:40" style="vpadding:6; hpadding:6">
+					<Text name="reason" dimensions="top:0; left:0; width:100%; height:20" key="ARC_REQ_CERT" class="req_reason" />
+					<Text name="names" dimensions="top:0; left:0; width:100%; height:20" class="req_names" key="{PlayerName, PlayerName, PlayerName, PlayerName, PlayerName}" />
+				</ListLayout>
+				<ListLayout name="zone_req" dimensions="top:0; left:0; width:10; height:40" style="vpadding:6; hpadding:6">
+					<Text name="reason" dimensions="top:0; left:0; width:100%; height:20" key="{Not in leader's zone}" class="req_reason" />
+					<Text name="names" dimensions="top:0; left:0; width:100%; height:20" class="req_names" key="{PlayerName, PlayerName, PlayerName, PlayerName, PlayerName}" />
+				</ListLayout>
+			</ListLayout>
+		</BluePrint>
+	</BluePrints>
+
+	<Frames>
+		<PanelFrame name="ZoneExplorer" dimensions="center-x:50%; center-y:50%; width:750; height:600">
+			<Children>
+				<Group name="Title" dimensions="top:0%; bottom:40; width:100%">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Group name="MovableParent" dimensions="dock:fill" />
+					<Text name="title" key="{Zone Explorer}" dimensions="top:0; height:40; left:0; right:100%;" style="font:Demi_18; valign:center; halign:center; color:PanelTitle" />
+					<FocusBox name="close" dimensions="left:100%-48; right:100%; top:0; bottom:100%" class="ui_button">
+						<Border dimensions="dock:fill" style="tint:000000; alpha:0.5; padding:5" />
+						<StillArt name="X" dimensions="center-x:50%; center-y:50%; width:16; height:16" style="texture:DialogWidgets; region:close; eatsmice:false" />
+					</FocusBox>
+				</Group>
+
+				<Group name="Body" dimensions="left:0; top:45; bottom:100%; width:300;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Group name="zones" dimensions="left:7; right:100%-3; top:5; bottom:100%-5;" />
+				</Group>
+
+				<Group name="Details" dimensions="left:305; top:45; bottom:100%; width:100%-305;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+
+					<Text name="name" dimensions="left:15; top:10; right:100%-15; height:20" style="font:Demi_11; valign:center; halign:left; color:PanelTitle" />
+					<Text name="zoneid" dimensions="left:15; top:10; right:100%-15; height:20" style="font:Demi_8; valign:center; halign:right; color:white" />
+
+					<Group name="screenshot_group" dimensions="left:18; top:35; height:162; aspect:1.8654">
+						<Group name="screenshot" dimensions="left:1; right:100%-1; top:1; bottom:100%-1" />
+						<Border dimensions="dock:fill" class="ButtonBorder" style="alpha:0.15; exposure:1.0; padding:2" />
+					</Group>
+					<Group name="thumbnails" dimensions="right:100%-18; top:35; height:54; width:100;" />
+
+					<ListLayout name="detail" dimensions="top:205; left:15; width:100%-30; height:18" style="horizontal:true; hpadding:5">
+						<Text name="req" key="Required" dimensions="top:0; left:0; width:60; height:100%" class="plate_grey" />
+						<Group name="level_min" dimensions="left:0; top:0; height:100%; width:50" >
+							<Border dimensions="dock:fill" class="PanelSubBackDrop" style="padding:3; tint:#1F2022; alpha:1" />
+							<Text name="label" dimensions="top:0; left:0; width:100%; height:100%" class="plate_center_small" />
+						</Group>
+						<Group name="player_count" dimensions="left:0; top:0; height:100%; width:115" >
+							<Border dimensions="dock:fill" class="PanelSubBackDrop" style="padding:3; tint:#1F2022; alpha:1" />
+							<Text name="label" dimensions="top:0; left:0; width:100%; height:100%" class="plate_center_small" />
+						</Group>
+					</ListLayout>
+
+					<Group name="difficulty"  dimensions="top:202; right:100%-18; width:154; height:24;">
+						<Border dimensions="dock:fill" class="PanelSubBackDrop" style="padding:3; tint:#1F2022; alpha:1" />
+						<Group name="choice" dimensions="top:2; left:2; right:100%-2; bottom:100%-2" />
+					</Group>
+
+					<ListLayout name="daily_completion" dimensions="top:228; left:15; right:100%-15; height:20" style="horizontal:true; hpadding:2; visible:true">
+						<Group name="icon_grp" dimensions="top:0; left:0; width:18; height:100%;">
+							<StillArt name="icon" dimensions="right:100%; center-y:50%; width:13; height:10" style="texture:check_icon;" />
+						</Group>
+						<Text name="label" key="DAILY_COMPLETED_TODAY" dimensions="top:0; left:0; width:100%; height:100%" class="plate_grey" />
+					</ListLayout>
+
+					<DropDown name="matchmaking" dimensions="top:228; right:100%-20; width:150; height:20" style="font:UbuntuMedium_8;" />
+
+					<Group name="loot" dimensions="top:260; height:46; left:18; right:100%-18" style="clip-children:true">
+						<ListLayout name="cards" dimensions="dock:fill" style="horizontal:true; hpadding:5"/>
+						<Slider name="slider" dimensions="left:0; right:100%; height:12; bottom:100%" style="horizontal:true"/>
+					</Group>
+
+					<Group dimensions="left:0; right:100%; bottom:100%-235; height:1" blueprint="seperator" style="alpha:0.3" />
+
+					<Group name="text_group" dimensions="dock:fill" style="visible:false">
+						<Text name="text" dimensions="left:0; top:0; bottom:100%; width:100%;" style="font:UbuntuRegular_9; halign:left; valign:top; wrap:true;" />
+					</Group>
+
+					<Group name="scroll_group" dimensions="left:10%; right:90%; bottom:100%-140; height:85;">
+						<Group name="scroll" dimensions="left:5; right:100%-5; top:5; bottom:100%-5" />
+					</Group>
+
+					<Group dimensions="left:0; right:100%; bottom:100%-130; height:1" blueprint="seperator" style="alpha:0.3" />
+
+					<FocusBox name="queue" dimensions="center-x:50%; width:90%; height:45; bottom:100%-52" >
+						<!-- <Group name="group" dimensions="dock:fill" /> -->
+					</FocusBox>
+					<FocusBox name="travel" dimensions="center-x:50%; width:90%; height:45; bottom:100%-52" >
+						<!-- <Group name="group" dimensions="dock:fill" /> -->
+					</FocusBox>
+
+					<Button name="cancel_queue" dimensions="right:95%; bottom:100%-24; width:150; height: 16" style="tint:#FF0000" key="{Cancel Queue}" />
+				</Group>
+				<Group name="Foster" dimensions="dock:fill" style="visible:false" />
+			</Children>
+
+			<OnOpen bind="OnZEOpen" />
+			<OnClose bind="OnZEClose" />
+			<OnEscape bind="OnZEClose" />
+		</PanelFrame>
+
+		<PanelFrame name="RawZoneList" dimensions="center-x:50%; center-y:50%; width:1003; height:700" permanent="false" visible="false" depth="0">
+			<Children>
+				<Group name="Title" dimensions="top:0%; bottom:40; width:100%">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Group name="MovableParent" dimensions="dock:fill" />
+					<Text name="title" key="{Raw Zone List}" dimensions="top:0; height:40; left:0; right:100%;" style="font:Demi_18; valign:center; halign:center; color:PanelTitle" />
+					<FocusBox name="close" dimensions="left:100%-48; right:100%; top:0; bottom:100%" class="ui_button">
+						<Border dimensions="dock:fill" style="tint:000000; alpha:0.5; padding:5" />
+						<StillArt name="X" dimensions="center-x:50%; center-y:50%; width:16; height:16" style="texture:DialogWidgets; region:close; eatsmice:false" />
+					</FocusBox>
+				</Group>
+
+				<Group name="Body" dimensions="left:0; top:45; bottom:100%; width:100%;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Group name="group" dimensions="left:5; right:100%-5; top:5; bottom:100%-5;">
+						<Border name="inner_border" dimensions="left:2; right:100%-2; top:2; bottom:100%-2;" class="PanelBackDrop" />
+						<Border name="outer_border" dimensions="dock:fill" style="tint: #111111; alpha: 0;" />
+						<Group name="wrapper" dimensions="left: 5; width: 100%-10; top: 5; bottom: 100%-5;">
+							<TextInput name="zonelist" dimensions="dock:fill" class="Body_Input" />
+						</Group>
+					</Group>
+				</Group>
+			</Children>
+
+			<OnOpen bind="OnRawZLOpen" />
+			<OnClose bind="OnRawZLClose" />
+			<OnEscape bind="OnRawZLClose" />
+		</PanelFrame>
+
+		<PanelFrame name="Changelog" dimensions="center-x:50%; center-y:50%; width:1003; height:700" permanent="false" visible="false" depth="1">
+			<Children>
+				<Group name="title_section" dimensions="top:0%; bottom:40; width:100%">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Group name="MovableParent" dimensions="dock:fill" />
+					<Text name="title" key="{Changelog}" dimensions="top:0; height:40; left:0; right:100%;" style="font:Demi_18; valign:center; halign:center; color:PanelTitle" />
+					<FocusBox name="close" dimensions="left:100%-48; right:100%; top:0; bottom:100%" class="ui_button">
+						<Border dimensions="dock:fill" style="tint:000000; alpha:0.5; padding:5" />
+						<StillArt name="X" dimensions="center-x:50%; center-y:50%; width:16; height:16" style="texture:DialogWidgets; region:close; eatsmice:false" />
+					</FocusBox>
+				</Group>
+
+				<Group name="body_section" dimensions="left:0; top:45; bottom:100%; width:100%;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Group name="group" dimensions="left:5; right:100%-5; top:5; bottom:100%-5;">
+						<Border name="inner_border" dimensions="left:2; right:100%-2; top:2; bottom:100%-2;" class="PanelBackDrop" />
+						<Border name="outer_border" dimensions="dock:fill" style="tint: #111111; alpha: 0;" />
+						<Group name="wrapper" dimensions="left: 5; width: 100%-10; top: 5; bottom: 100%-5;">
+							<TextInput name="body" dimensions="dock:fill" class="Body_Input" />
+						</Group>
+					</Group>
+				</Group>
+			</Children>
+
+			<OnOpen bind="OnChangelogOpen" />
+			<OnClose bind="OnChangelogClose" />
+			<OnEscape bind="OnChangelogClose" />
+		</PanelFrame>
+
+		<PanelFrame name="Keybind" dimensions="center-x:50%; center-y:50%; width:300; height:100" topmost="true">
+			<Children>
+				<Border dimensions="dock:fill" class="PanelBackDrop" />
+				<Text name="instructions" key="{Press the key you wish to bind}" dimensions="left:10; right:100%-10; top:0; height:40" style="valign:center; halign:center; color:PanelTitle" />
+				<Text name="escape" key="{(Press ESC to cancel)}" dimensions="left:10; right:100%-10; top:35; height:10" style="font:Demi_8; valign:center; halign:center; color:white" />
+				<Group name="bind" dimensions="center-x:50%; top:55; width:32; height:32" />
+				<KeyCatcher name="KeyCatch" dimensions="relative:screen; height:0; width:0;" style="eatsmice:false">
+					<Events>
+						<OnKeyCatch bind="OnKeyPress" />
+					</Events>
+				</KeyCatcher>
+			</Children>
+		</PanelFrame>
+	</Frames>
+
+</Component>

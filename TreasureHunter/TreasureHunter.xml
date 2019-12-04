@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component  xmlns="http://www.red5studios.com/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd">
+    <Info
+        title="Treasure Hunter"
+        author="GreatKhan, Nizidr, Nalin"
+        description="A basic addon to show you the ropes"
+        url="http://forums.firefall.com/community/threads/treasure-hunter.7512522/"
+        uiVersion="1001"
+    />
+
+    <Textures>
+        <Texture name="Icon" src="./Icon.dds" premultiplied="false"/>
+    </Textures>
+    <Events>
+        <Event name="ON_COMPONENT_LOAD"         bind="OnComponentLoad"/>
+        <Event name="ON_UI_ENTITY_AVAILABLE"    bind="OnEntityAvailable"/>
+        <Event name="ON_UI_ENTITY_LOST"         bind="OnEntityLost"/>
+        <Event name="ON_ENTER_ZONE"             bind="OnEnterZone"/>
+    </Events>
+
+</Component>

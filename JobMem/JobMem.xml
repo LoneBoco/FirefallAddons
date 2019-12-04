@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component xmlns="http://www.red5studios.com/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd">
+	<Info
+		title="JobMem"
+		author="RCR, Nalin"
+		description="Control ares jobs while away from the job board."
+		url=""
+		uiVersion="2001"
+	/>
+
+	<Events>
+		<Event name="ON_COMPONENT_LOAD"     	bind="OnComponentLoad" />
+		<Event name="ON_ARC_STATUS_CHANGED"		bind="OnArcStatusChanged"/>
+		<Event name="ON_ENTER_ZONE"				bind="OnEnterZone" />
+	</Events>
+
+</Component>

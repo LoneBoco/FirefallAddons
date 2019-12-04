@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component xmlns="http://www.red5studios.com/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.red5studios.com/ ../../../schemas/component.xsd">
+	<Info
+		title="Nalin Test"
+		author="Nalin"
+		description="Testing stuff."
+		url=""
+		uiVersion="1000"
+	/>
+
+	<Events>
+		<Event name="ON_COMPONENT_LOAD"			bind="OnComponentLoad"/>
+		<!-- <Event name="ON_SIN_CARD_OP"						bind="OnSinCardOp"/> -->
+		<!-- <Event name="ON_TIMED_DAILY_REWARD"		bind="OnTimedDailyReward"/> -->
+	</Events>
+
+	<Styles>
+		<StyleSheet name="GrayItemBackDrop" parent="PanelBackDrop">
+			alpha:0.8;
+			tint:#000000;
+		</StyleSheet>
+		<StyleSheet name="Body_Input" parent="#TextInput">
+			font:UbuntuRegular_10;
+			text-color:#ffffff;
+			eatsmice:true;
+			multiline:true;
+			texture:colors;
+			region:transparent;
+			valign:top;
+			halign:left;
+			<!-- wrapping:true; -->
+		</StyleSheet>
+	</Styles>
+
+	<BluePrints>
+		<Blueprint name="MainBackDrop" >
+			<Border dimensions="dock:fill" class="PanelBackDrop"/>
+		</Blueprint>
+	</BluePrints>
+
+	<Frames>
+		<PanelFrame name="Main" dimensions="center-x:50%; center-y:50%; width:1003; height:700" permanent="false" visible="false" depth="0">
+			<Children>
+
+				<Group id="title_section" dimensions="top:0%; bottom:40; width:100%">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<Group id="MovableParent" dimensions="dock:fill"/>
+					<Text name="title" key="{Zone List}" dimensions="top:0; height:40; left:0; right:100%;" style="font:Demi_18; valign:center; halign:center; color:PanelTitle" />
+					<FocusBox id="close" dimensions="left:100%-48; right:100%; top:0; bottom:100%" class="ui_button">
+						<Border dimensions="dock:fill" style="tint:000000; alpha:0.5; padding:5"/>
+						<StillArt name="X" dimensions="center-x:50%; center-y:50%; width:16; height:16" style="texture:DialogWidgets; region:close; eatsmice:false"/>
+					</FocusBox>
+				</Group>
+
+				<Group id="body_section" dimensions="left:0; top:45; bottom:100%; width:100%;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<Group name="group" dimensions="left:5; right:100%-5; top:5; bottom:100%-5;">
+						<Border name="inner_border" dimensions="left:2; right:100%-2; top:2; bottom:100%-2;" class="PanelBackDrop"/>
+						<Border name="outer_border" dimensions="dock:fill" style="tint: #111111; alpha: 0;"/>
+						<Group name="wrapper" dimensions="left: 5; width: 100%-10; top: 5; bottom: 100%-5;">
+							<TextInput id="text" dimensions="dock:fill" class="Body_Input" />
+						</Group>
+					</Group>
+				</Group>
+
+			</Children>
+
+			<!-- <OnMessage bind="OnMessage" /> -->
+			<!-- <OnEscape bind="OnEscape"/> -->
+			<OnOpen bind="OnOpen"/>
+			<OnClose bind="OnClose"/>
+		</PanelFrame>
+	</Frames>
+
+</Component>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component xmlns="http://www.red5studios.com/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd">
+	<Info
+		title="Broken Teams"
+		author="Nalin"
+		description="Team listing for Broken Peninsula"
+		url=""
+		uiVersion="1003"
+	/>
+
+	<Events>
+		<Event name="ON_COMPONENT_LOAD" bind="OnComponentLoad" />
+		<Event name="ON_TAB_TOGGLE" bind="OnTabToggle" />
+		<Event name="ON_ENTER_ZONE" bind="OnEnterZone" />
+	</Events>
+
+	<Textures>
+		<Texture name="sysicon_watchlist" src="./images/sysicon_watchlist.png" premultiplied="false" />
+		<Texture name="erase" src="./images/erase.png" premultiplied="false" />
+		<Texture name="empty" src="./images/empty.png" premultiplied="false" />
+		<Texture name="omnidyne" src="./images/omnidyne.png" premultiplied="false" />
+		<Texture name="astrek" src="./images/astrek.png" premultiplied="false" />
+		<Texture name="kisuton" src="./images/kisuton.png" premultiplied="false" />
+		<Texture name="knives" src="./images/knives.png" premultiplied="false" />
+		<Texture name="emerald_blades" src="./images/emerald_blades.png" premultiplied="false" />
+		<Texture name="overflow" src="./images/overflow.png" premultiplied="false" />
+	</Textures>
+
+	<Styles>
+		<StyleSheet name="PlayerBackDrop" parent="ButtonSolid">
+			alpha:0.0;
+			tint:#009900;
+		</StyleSheet>
+		<StyleSheet name="WLButton" parent="#Button">
+			region-Hover:Button-Hover;
+			font:Demi_8;
+			tint:#00FF00;
+		</StyleSheet>
+		<StyleSheet name="WLInput" parent="#TextInput">
+			font:UbuntuRegular_8;
+			text-color:#ffffff;
+			eatsmice:true;
+			valign:top;
+			halign:left;
+		</StyleSheet>
+	</Styles>
+
+	<BluePrints>
+		<BluePrint name="BPTeam" instantiable="true">
+			<!-- <Border dimensions="dock:fill" class="PanelBackDrop" /> -->
+			<StillArt name="icon" dimensions="left:4; top:4; width:32; height:32;" style="texture:;" />
+			<Text name="id" key="(0)" dimensions="left:40; top:4; width:20; height:32;" style="font:Demi_8; valign:center;" />
+			<Text name="name" key="{Team #}" dimensions="left:60; top:4; width:100%; height:32;" style="font:Demi_8; valign:center; color:PanelTitle;" />
+			<Text name="count" key="{(0 players)}" dimensions="left: 100%-2; right:6; top:4; height:32;" style="font:Demi_8; valign:center; halign:right;" />
+
+			<Group name="players" dimensions="left:0; top:40; width:100%; height:100%-40;">
+				<Border dimensions="dock:fill" class="PanelBackDrop" />
+				<!-- <Group name="player" dimensions="left:0; width:50%-5; height:20;" blueprint="BPPlayerEntry" /> -->
+				<!-- <Group name="player" dimensions="left:50%; width:100%; height:20;" blueprint="BPPlayerEntry" /> -->
+			</Group>
+		</BluePrint>
+
+		<BluePrint name="BPPlayerEntry" instantiable="true">
+			<Border name="backdrop" dimensions="width:100%; height:100%;" class="PlayerBackDrop" />
+			<StillArt name="icon" dimensions="left:4; top:0; width:20; height:20;" style="texture:;" />
+			<Text name="name" key="{Player name}" dimensions="left:28; top:0; width:100%-20; height:100%;" style="font:Demi_8; valign:center;" />
+			<!-- <StillArt name="squad" dimensions="left:100%-20; top:0; width:20; height:20;" style="texture:;" /> -->
+		</BluePrint>
+
+		<BluePrint name="WLPlayerEntry" instantiable="true">
+			<Group name="entry" dimensions="left:0; top:0; width:100%-15; height:20;">
+				<Text name="name" key="{Player name}" dimensions="left:0; top:0; width:100%-12; height:100%;" style="font:Demi_10;" />
+				<FocusBox name="remove" dimensions="left:100%-5; top:2; width:16; height:16;">
+					<StillArt name="icon" dimensions="dock:fill;" style="texture:erase; tint:#333333" />
+				</FocusBox>
+			</Group>
+		</BluePrint>
+	</BluePrints>
+
+	<Frames>
+		<PanelFrame name="Main" dimensions="center-x:50%; center-y:45%; width:1200; height:660" visible="false" depth="0">
+			<Children>
+				<Group id="Title_Section" dimensions="top:0%; bottom:40; width:100%">
+					<Border dimensions="dock:fill" class="PanelBackDrop" />
+					<Text name="title" key="{Teams}" dimensions="top:0; height:40; left:0; right:100%;" style="font:Demi_18; valign:center; halign:center; color:PanelTitle" />
+					<Text name="zonecount" key="{(0 in zone)}" dimensions="top:0; height:40; left:100%-6; right:6;" style="font:Demi_10; valign:center; halign:right;" />
+				</Group>
+
+				<Group id="Body_Section" dimensions="left:0; width:100%; top:45; height:250" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<Group id="Team1" dimensions="top:0; left:0; width:20%; height:100%;" blueprint="BPTeam" />
+					<Group id="Team2" dimensions="top:0; left:20%; width:20%; height:100%;" blueprint="BPTeam" />
+					<Group id="Team3" dimensions="top:0; left:40%; width:20%; height:100%;" blueprint="BPTeam" />
+					<!-- <Group id="Team4" dimensions="top:0; left:60%; width:20%; height:100%;" blueprint="BPTeam" /> -->
+					<!-- <Group id="Team5" dimensions="top:0; left:80%; width:20%; height:100%;" blueprint="BPTeam" /> -->
+				</Group>
+
+				<Group id="Body_Section2" dimensions="left:0; width:100%; top:295; height:250" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<!-- <Group id="Team6" dimensions="top:0; left:0; width:20%; height:100%;" blueprint="BPTeam" /> -->
+					<!-- <Group id="Team7" dimensions="top:0; left:20%; width:20%; height:100%;" blueprint="BPTeam" /> -->
+					<!-- <Group id="Team8" dimensions="top:0; left:40%; width:20%; height:100%;" blueprint="BPTeam" /> -->
+					<!-- <Group id="Team9" dimensions="top:0; left:60%; width:20%; height:100%;" blueprint="BPTeam" /> -->
+					<!-- <Group id="Team10" dimensions="top:0; left:80%; width:20%; height:100%;" blueprint="BPTeam" /> -->
+				</Group>
+
+				<Group id="Overflow_Section" dimensions="left:0; width:100%; top:550; height:150;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<Group id="TeamOverflow" dimensions="top:0; left:0; width:100%; height:100%;" blueprint="BPTeam" />
+				</Group>
+			</Children>
+
+			<!-- <OnOpen bind="OnOpen" /> -->
+			<OnClose bind="OnClose" />
+		</PanelFrame>
+
+		<PanelFrame name="Keybind" dimensions="center-x:50%; center-y:50%; width:300; height:100" topmost="true">
+			<Children>
+				<Border dimensions="dock:fill" class="PanelBackDrop"/>
+				<Text name="instructions" key="{Press the key you wish to bind}" dimensions="left:10; right:100%-10; top:0; height:40" style="valign:center; halign:center; color:PanelTitle" />
+				<Text name="escape" key="{(Press ESC to cancel)}" dimensions="left:10; right:100%-10; top:35; height:10" style="font:Demi_8; valign:center; halign:center; color:white" />
+				<Group name="bind" dimensions="center-x:50%; top:55; width:32; height:32" />
+				<KeyCatcher name="KeyCatch" dimensions="relative:screen; height:0; width:0;" style="eatsmice:false">
+					<Events>
+						<OnKeyCatch bind="OnKeyPress"/>
+					</Events>
+				</KeyCatcher>
+			</Children>
+		</PanelFrame>
+
+		<PanelFrame name="Watchlist" dimensions="center-x:50%; center-y:50%; width:300; height:500">
+			<Children>
+				<Group id="WL_Title" dimensions="top:0%; bottom:40; width:100%">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<Group id="MovableParent" dimensions="dock:fill"/>
+					<Text name="title" key="{Watchlist}" dimensions="top:0; height:40; left:0; right:100%;" style="font:Demi_18; valign:center; halign:center; color:PanelTitle" />
+					<FocusBox id="close" dimensions="left:100%-48; right:100%; top:0; bottom:100%" class="ui_button">
+						<Border dimensions="dock:fill" style="tint:000000; alpha:0.5; padding:5"/>
+						<StillArt name="X" dimensions="center-x:50%; center-y:50%; width:16; height:16" style="texture:DialogWidgets; region:close; eatsmice:false"/>
+					</FocusBox>
+				</Group>
+
+				<Group id="WL_Body" dimensions="left:0; top:45; bottom:100%; width: 100%;" style="clip-children:false">
+					<Border dimensions="dock:fill" class="PanelBackDrop"/>
+					<Group name="wrapper" dimensions="left:0; top:0; width:100%; height:100%-45;">
+						<Group id="WL_Players" dimensions="left:2; width:100%-2; top:5; height:100%;"/>
+						<!-- <ListLayout id="WL_Players" dimensions="left:2; width:100%-2; top:5; height:20;" style="vpadding:1; eatsmice:false;"/> -->
+					</Group>
+					<Group name="addwrapper" dimensions="left:0; top:100%-35; width:100%; height:35;">
+						<Border dimensions="dock:fill" class="PanelBackDrop" />
+						<TextInput id="WL_Input" dimensions="left:5; right:100%-70; top:5; height:25;" class="WLInput">
+							<Events>
+								<OnSubmit bind="WLI_OnSubmit"/>
+								<OnTextChange bind="WLI_OnTextChange"/>
+								<OnLostFocus bind="WLI_OnLostFocus"/>
+								<OnTab bind="WLI_OnTabKey"/>
+								<OnPrevious bind="WLI_OnUpArrow"/>
+								<OnNext bind="WLI_OnDownArrow"/>
+							</Events>
+						</TextInput>
+						<Button name="WL_Add" key="{Add}" dimensions="right:100%-5; top:5; width:60; height:25;" class="WLButton">
+							<Events>
+								<OnPrimaryAction bind="OnWatchlistAdd" />
+							</Events>
+						</Button>
+					</Group>
+				</Group>
+			</Children>
+
+			<!-- <OnOpen bind="OnWatchlistOpen" /> -->
+			<OnClose bind="OnWatchlistClose" />
+			<OnEscape bind="OnWatchlistClose" />
+		</PanelFrame>
+
+	</Frames>
+
+</Component>

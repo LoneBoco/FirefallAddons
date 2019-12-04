@@ -1,0 +1,1 @@
+[melder_info]version=2.2;patch=1.2.1853;providertype=DirectDownload;dlurl=http://firefall.suckerfree.org/jobmem/JobMem.zip[/melder_info]
